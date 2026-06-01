@@ -4,6 +4,9 @@ import br.com.nutrifit.model.enums.ObjetivoNutricional;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.DecimalMin;
 import jakarta.validation.constraints.NotNull;
+import java.util.List;
+import jakarta.persistence.OneToMany;
+import jakarta.persistence.OneToOne;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -28,4 +31,9 @@ public class Usuario extends Pessoa {
     @Enumerated(EnumType.STRING)
     private ObjetivoNutricional objetivo;
 
+    @OneToOne(mappedBy = "usuario")
+    private Meta meta;
+
+    @OneToMany(mappedBy = "usuario")
+    private List<Refeicao> refeicoes;
 }
