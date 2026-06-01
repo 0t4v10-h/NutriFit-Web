@@ -1,0 +1,31 @@
+package br.com.nutrifit.model;
+
+import br.com.nutrifit.model.enums.ObjetivoNutricional;
+import jakarta.persistence.*;
+import jakarta.validation.constraints.DecimalMin;
+import jakarta.validation.constraints.NotNull;
+import lombok.Getter;
+import lombok.Setter;
+
+@Getter
+@Setter
+@Entity
+@Table(name = "usuarios")
+public class Usuario extends Pessoa {
+
+    @NotNull(message = "O peso é obrigatório")
+    @DecimalMin(value = "1.0", message = "Peso inválido")
+    private Double peso;
+
+    @NotNull(message = "A altura é obrigatória")
+    @DecimalMin(value = "0.50", message = "Altura inválida")
+    private Double altura;
+
+    @NotNull(message = "A meta calórica é obrigatória")
+    @DecimalMin(value = "1.0", message = "Meta calórica inválida")
+    private Double metaCalorica;
+
+    @Enumerated(EnumType.STRING)
+    private ObjetivoNutricional objetivo;
+
+}
