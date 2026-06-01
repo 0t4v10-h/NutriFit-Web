@@ -5,6 +5,7 @@ import jakarta.persistence.*;
 import jakarta.validation.constraints.DecimalMin;
 import jakarta.validation.constraints.NotNull;
 import java.util.List;
+import java.util.ArrayList;
 import jakarta.persistence.OneToMany;
 import jakarta.persistence.OneToOne;
 import lombok.Getter;
@@ -36,4 +37,11 @@ public class Usuario extends Pessoa {
 
     @OneToMany(mappedBy = "usuario")
     private List<Refeicao> refeicoes;
+
+    @OneToMany(mappedBy = "usuario")
+    private List<Treino> treinos;
+
+    @OneToMany(mappedBy = "usuario")
+    private List<Agendamento> agendamentos;
+
 }
