@@ -27,4 +27,28 @@ public class UsuarioController {
         model.addAttribute("usuario", new Usuario());
         return "usuarios/form";
     }
+
+    @PostMapping("/salvar")
+    public String salvar(@ModelAttribute Usuario usuario) {
+        service.salvar(usuario);
+        return "redirect:/usuarios";
+    }
+
+    @GetMapping("/editar/{id}")
+    public String editar(@PathVariable Long id, Model model) {
+
+        Usuario usuario = service.buscarPorId(id);
+
+        model.addAttribute("usuario", usuario);
+
+        return "usuarios/form";
+    }
+
+    @GetMapping("/excluir/{id}")
+    public String excluir(@PathVariable Long id) {
+
+        service.excluir(id);
+
+        return "redirect:/usuarios";
+    }
 }
