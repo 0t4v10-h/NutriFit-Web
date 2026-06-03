@@ -2,8 +2,10 @@ package br.com.nutrifit.controller;
 
 import br.com.nutrifit.model.Usuario;
 import br.com.nutrifit.service.UsuarioService;
+import jakarta.validation.Valid;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 
 @Controller
@@ -29,8 +31,14 @@ public class UsuarioController {
     }
 
     @PostMapping("/salvar")
-    public String salvar(@ModelAttribute Usuario usuario) {
+    public String salvar(@Valid @ModelAttribute Usuario usuario, BindingResult result) {
+
+        if (result.hasErrors()) {
+            return "usuarios/form";
+        }
+
         service.salvar(usuario);
+
         return "redirect:/usuarios";
     }
 

@@ -18,47 +18,83 @@
 
         <div class="mb-3">
             <label>Nome</label>
+
             <input type="text"
                    class="form-control"
                    th:field="*{nome}">
+
+            <div class="text-danger"
+                 th:if="${#fields.hasErrors('nome')}"
+                 th:errors="*{nome}">
+            </div>
         </div>
 
         <div class="mb-3">
             <label>Email</label>
+
             <input type="email"
                    class="form-control"
                    th:field="*{email}">
+
+            <div class="text-danger"
+                 th:if="${#fields.hasErrors('email')}"
+                 th:errors="*{email}">
+            </div>
         </div>
 
         <div class="mb-3">
             <label>Senha</label>
+
             <input type="password"
                    class="form-control"
                    th:field="*{senha}">
+
+            <div class="text-danger"
+                 th:if="${#fields.hasErrors('senha')}"
+                 th:errors="*{senha}">
+            </div>
         </div>
 
         <div class="mb-3">
             <label>Peso (kg)</label>
+
             <input type="number"
                    step="0.1"
                    class="form-control"
                    th:field="*{peso}">
+
+            <div class="text-danger"
+                 th:if="${#fields.hasErrors('peso')}"
+                 th:errors="*{peso}">
+            </div>
         </div>
 
         <div class="mb-3">
             <label>Altura (m)</label>
+
             <input type="number"
                    step="0.01"
                    class="form-control"
                    th:field="*{altura}">
+
+            <div class="text-danger"
+                 th:if="${#fields.hasErrors('altura')}"
+                 th:errors="*{altura}">
+            </div>
         </div>
 
         <div class="mb-3">
             <label>Meta Calórica</label>
+
             <input type="number"
                    step="1"
                    class="form-control"
                    th:field="*{metaCalorica}">
+
+            <div class="text-danger"
+                 th:if="${#fields.hasErrors('metaCalorica')}"
+                 th:errors="*{metaCalorica}">
+            </div>
         </div>
 
         <div class="mb-3">
@@ -68,20 +104,16 @@
                     th:field="*{objetivo}">
 
                 <option value="">Selecione...</option>
-
-                <option value="EMAGRECER">
-                    Emagrecer
-                </option>
-
-                <option value="GANHAR_MASSA">
-                    Ganhar Massa
-                </option>
-
-                <option value="MANTER_PESO">
-                    Manter Peso
-                </option>
+                <option value="EMAGRECER">Emagrecer</option>
+                <option value="GANHAR_MASSA">Ganhar Massa</option>
+                <option value="MANTER_PESO">Manter Peso</option>
 
             </select>
+
+            <div class="text-danger"
+                 th:if="${#fields.hasErrors('objetivo')}"
+                 th:errors="*{objetivo}">
+            </div>
         </div>
 
         <button type="submit" class="btn btn-success">
