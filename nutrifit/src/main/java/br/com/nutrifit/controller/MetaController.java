@@ -1,6 +1,7 @@
 package br.com.nutrifit.controller;
 
 import br.com.nutrifit.model.Meta;
+import br.com.nutrifit.model.Usuario;
 import br.com.nutrifit.service.MetaService;
 import br.com.nutrifit.service.UsuarioService;
 import jakarta.validation.Valid;
@@ -31,7 +32,10 @@ public class MetaController {
     @GetMapping("/novo")
     public String novo(Model model) {
 
-        model.addAttribute("meta", new Meta());
+        Meta meta = new Meta();
+        meta.setUsuario(new Usuario());
+
+        model.addAttribute("meta", meta);
         model.addAttribute("usuarios",
                 usuarioService.listarTodos());
 
@@ -39,9 +43,12 @@ public class MetaController {
     }
 
     @PostMapping("/salvar")
-    public String salvar(@Valid @ModelAttribute Meta meta,
-                         BindingResult result,
-                         Model model) {
+    public String salvar(
+            @Valid @ModelAttribute Meta meta,
+            BindingResult result,
+            Model model) {
+
+        System.out.println(meta.getUsuario());
 
         if (result.hasErrors()) {
 
@@ -50,6 +57,21 @@ public class MetaController {
 
             return "metas/form";
         }
+
+        if (meta.getUsuario() == null ||
+                meta.getUsuario().getId() == null) {
+
+            model.addAttribute("usuarios",
+                    usuarioService.listarTodos());
+
+            return "metas/form";
+        }
+        
+        meta.setUsuario(
+                usuarioService.buscarPorId(
+                        meta.getUsuario().getId()
+                )
+        );
 
         service.salvar(meta);
 

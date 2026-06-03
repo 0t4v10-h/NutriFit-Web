@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Cadastro de Meta</title>
+
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/css/bootstrap.min.css" rel="stylesheet">
+</head>
+<body>
+
+<div class="container mt-4">
+
+    <h2>Cadastrar Meta</h2>
+
+    <form th:action="@{/metas/salvar}"
+          th:object="${meta}"
+          method="post">
+
+        <input type="hidden" th:field="*{id}">
+
+        <div class="mb-3">
+            <label>Descrição</label>
+
+            <input type="text"
+                   class="form-control"
+                   th:field="*{descricao}">
+
+            <div class="text-danger"
+                 th:if="${#fields.hasErrors('descricao')}"
+                 th:errors="*{descricao}">
+            </div>
+        </div>
+
+        <div class="mb-3">
+            <label>Peso Objetivo</label>
+
+            <input type="number"
+                   step="0.1"
+                   class="form-control"
+                   th:field="*{pesoObjetivo}">
+
+            <div class="text-danger"
+                 th:if="${#fields.hasErrors('pesoObjetivo')}"
+                 th:errors="*{pesoObjetivo}">
+            </div>
+        </div>
+
+        <div class="mb-3">
+
+            <label>Usuário</label>
+
+            <select class="form-select"
+                    th:field="*{usuario.id}">
+
+                <option value="">
+                    Selecione um usuário
+                </option>
+
+                <option th:each="usuario : ${usuarios}"
+                        th:value="${usuario.id}"
+                        th:text="${usuario.nome}">
+                </option>
+
+            </select>
+
+            <div class="text-danger"
+                 th:if="${#fields.hasErrors('usuario')}"
+                 th:errors="*{usuario}">
+            </div>
+
+        </div>
+
+        <button type="submit"
+                class="btn btn-success">
+            Salvar
+        </button>
+
+        <a href="/metas"
+           class="btn btn-secondary">
+            Voltar
+        </a>
+
+    </form>
+
+</div>
+
+</body>
+</html>

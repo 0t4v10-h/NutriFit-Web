@@ -22,6 +22,7 @@ public class Meta {
     @NotNull(message = "O peso objetivo é obrigatório")
     private Double pesoObjetivo;
 
+    @NotNull(message = "Selecione um usuário")
     @OneToOne
     @JoinColumn(name = "usuario_id")
     private Usuario usuario;

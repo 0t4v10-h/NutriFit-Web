@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Metas</title>
+
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/css/bootstrap.min.css" rel="stylesheet">
+</head>
+<body>
+
+<div class="container mt-4">
+
+    <h2>Metas Cadastradas</h2>
+
+    <a href="/metas/novo" class="btn btn-success mb-3">
+        Nova Meta
+    </a>
+
+    <table class="table table-striped">
+
+        <thead>
+        <tr>
+            <th>ID</th>
+            <th>Descrição</th>
+            <th>Peso Objetivo</th>
+            <th>Usuário</th>
+            <th>Ações</th>
+        </tr>
+        </thead>
+
+        <tbody>
+
+        <tr th:each="meta : ${metas}">
+            <td th:text="${meta.id}"></td>
+            <td th:text="${meta.descricao}"></td>
+            <td th:text="${meta.pesoObjetivo}"></td>
+            <td th:text="${meta.usuario.nome}"></td>
+
+            <td>
+                <a th:href="@{/metas/editar/{id}(id=${meta.id})}"
+                   class="btn btn-warning btn-sm">
+                    Editar
+                </a>
+
+                <a th:href="@{/metas/excluir/{id}(id=${meta.id})}"
+                   class="btn btn-danger btn-sm">
+                    Excluir
+                </a>
+            </td>
+
+        </tr>
+
+        </tbody>
+
+    </table>
+
+</div>
+
+</body>
+</html>
