@@ -1,0 +1,103 @@
+body {
+background-color: #f4f6f9;
+font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+/* HEADER */
+
+.navbar-custom {
+background-color: #198754;
+box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
+}
+
+.app-logo {
+font-size: 1.5rem;
+font-weight: bold;
+}
+
+/* SIDEBAR */
+
+.sidebar {
+background-color: #212529;
+min-height: 100%;
+padding: 20px;
+box-shadow: 2px 0 8px rgba(0, 0, 0, 0.15);
+}
+
+.sidebar-title {
+color: white;
+font-weight: bold;
+margin-bottom: 25px;
+}
+
+.sidebar .nav-item {
+margin-bottom: 8px;
+}
+
+.sidebar .nav-link {
+color: white;
+border-radius: 8px;
+transition: 0.2s;
+}
+
+.sidebar .nav-link:hover {
+background-color: #343a40;
+color: white;
+}
+
+/* TÍTULOS */
+
+.page-title {
+color: #198754;
+font-weight: bold;
+}
+
+/* CARDS */
+
+.card-custom {
+border: none;
+border-radius: 12px;
+}
+
+.card-custom .card-body {
+padding: 25px;
+}
+
+/* TABELAS */
+
+.table th,
+.table td {
+vertical-align: middle;
+}
+
+/* BOTÕES */
+
+.btn-action {
+min-width: 85px;
+}
+
+/* FOOTER */
+
+.footer-custom {
+text-align: center;
+padding: 15px;
+color: #6c757d;
+background-color: #ffffff;
+border-top: 1px solid #dee2e6;
+}
+
+/* DASHBOARD */
+
+.stat-card {
+border: none;
+border-radius: 15px;
+transition: 0.2s;
+}
+
+.stat-card:hover {
+transform: translateY(-3px);
+}
+
+.main-content {
+padding: 30px;
+}

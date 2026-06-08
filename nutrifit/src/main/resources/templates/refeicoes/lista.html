@@ -1,70 +1,112 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
+
 <head>
     <meta charset="UTF-8">
     <title>Refeições</title>
 
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/css/bootstrap.min.css"
           rel="stylesheet">
+
+    <link rel="stylesheet" th:href="@{/css/style.css}">
 </head>
+
 <body>
 
-<div class="container mt-4">
+<div th:replace="fragments/header :: header"></div>
 
-    <h2>Refeições Cadastradas</h2>
+<div class="container-fluid">
 
-    <a href="/refeicoes/novo"
-       class="btn btn-success mb-3">
-        Nova Refeição
-    </a>
+    <div class="row">
 
-    <table class="table table-striped">
+        <div class="col-md-2 p-0">
+            <div th:replace="fragments/sidebar :: sidebar"></div>
+        </div>
 
-        <thead>
-        <tr>
-            <th>ID</th>
-            <th>Nome</th>
-            <th>Calorias</th>
-            <th>Tipo</th>
-            <th>Data</th>
-            <th>Usuário</th>
-            <th>Ações</th>
-        </tr>
-        </thead>
+        <div class="col-md-10 main-content">
 
-        <tbody>
+            <div class="card card-custom shadow">
 
-        <tr th:each="refeicao : ${refeicoes}">
+                <div class="card-body">
 
-            <td th:text="${refeicao.id}"></td>
-            <td th:text="${refeicao.nome}"></td>
-            <td th:text="${refeicao.calorias}"></td>
-            <td th:text="${refeicao.tipo}"></td>
-            <td th:text="${refeicao.data}"></td>
-            <td th:text="${refeicao.usuario.nome}"></td>
+                    <div class="d-flex justify-content-between align-items-center mb-4">
 
-            <td>
+                        <h2 class="page-title mb-0">
+                            🍽️ Refeições Cadastradas
+                        </h2>
 
-                <a th:href="@{/refeicoes/editar/{id}(id=${refeicao.id})}"
-                   class="btn btn-warning btn-sm">
-                    Editar
-                </a>
+                        <a href="/refeicoes/novo"
+                           class="btn btn-success shadow-sm">
+                            + Nova Refeição
+                        </a>
 
-                <a th:href="@{/refeicoes/excluir/{id}(id=${refeicao.id})}"
-                   class="btn btn-danger btn-sm"
-                   onclick="return confirm('Deseja excluir esta refeição?')">
-                    Excluir
-                </a>
+                    </div>
 
-            </td>
+                    <table class="table table-hover table-bordered align-middle">
 
-        </tr>
+                        <thead class="table-success">
+                        <tr>
+                            <th>ID</th>
+                            <th>Nome</th>
+                            <th>Calorias</th>
+                            <th>Tipo</th>
+                            <th>Data</th>
+                            <th>Usuário</th>
+                            <th width="200">Ações</th>
+                        </tr>
+                        </thead>
 
-        </tbody>
+                        <tbody>
 
-    </table>
+                        <tr th:each="refeicao : ${refeicoes}">
+
+                            <td th:text="${refeicao.id}"></td>
+
+                            <td th:text="${refeicao.nome}"></td>
+
+                            <td th:text="${refeicao.calorias}"></td>
+
+                            <td th:text="${refeicao.tipo}"></td>
+
+                            <td th:text="${refeicao.data}"></td>
+
+                            <td th:text="${refeicao.usuario.nome}"></td>
+
+                            <td>
+
+                                <a th:href="@{/refeicoes/editar/{id}(id=${refeicao.id})}"
+                                   class="btn btn-warning btn-sm btn-action">
+                                    ✏️ Editar
+                                </a>
+
+                                <a th:href="@{/refeicoes/excluir/{id}(id=${refeicao.id})}"
+                                   class="btn btn-danger btn-sm btn-action"
+                                   onclick="return confirm('Deseja excluir esta refeição?')">
+                                    🗑 Excluir
+                                </a>
+
+                            </td>
+
+                        </tr>
+
+                        </tbody>
+
+                    </table>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
 
 </div>
 
+<div th:replace="fragments/footer :: footer"></div>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/js/bootstrap.bundle.min.js"></script>
+
 </body>
+
 </html>

@@ -1,102 +1,157 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
+
 <head>
     <meta charset="UTF-8">
     <title>Cadastro de Treino</title>
 
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/css/bootstrap.min.css"
           rel="stylesheet">
+
+    <link rel="stylesheet" th:href="@{/css/style.css}">
 </head>
+
 <body>
 
-<div class="container mt-4">
+<div th:replace="fragments/header :: header"></div>
 
-    <h2>Cadastrar Treino</h2>
+<div class="container-fluid">
 
-    <form th:action="@{/treinos/salvar}"
-          th:object="${treino}"
-          method="post">
+    <div class="row">
 
-        <input type="hidden" th:field="*{id}">
-
-        <div class="mb-3">
-            <label>Nome</label>
-
-            <input type="text"
-                   class="form-control"
-                   th:field="*{nome}">
-
-            <div class="text-danger"
-                 th:if="${#fields.hasErrors('nome')}"
-                 th:errors="*{nome}">
-            </div>
+        <div class="col-md-2 p-0">
+            <div th:replace="fragments/sidebar :: sidebar"></div>
         </div>
 
-        <div class="mb-3">
-            <label>Descrição</label>
+        <div class="col-md-10 main-content">
 
-            <textarea class="form-control"
-                      rows="4"
-                      th:field="*{descricao}">
-            </textarea>
+            <div class="card card-custom shadow">
 
-            <div class="text-danger"
-                 th:if="${#fields.hasErrors('descricao')}"
-                 th:errors="*{descricao}">
+                <div class="card-body">
+
+                    <h2 class="page-title mb-4">
+                        🏋️ Cadastrar Treino
+                    </h2>
+
+                    <form th:action="@{/treinos/salvar}"
+                          th:object="${treino}"
+                          method="post">
+
+                        <input type="hidden" th:field="*{id}">
+
+                        <div class="mb-3">
+
+                            <label class="form-label">
+                                Nome
+                            </label>
+
+                            <input type="text"
+                                   class="form-control"
+                                   th:field="*{nome}">
+
+                            <div class="text-danger mt-1"
+                                 th:if="${#fields.hasErrors('nome')}"
+                                 th:errors="*{nome}">
+                            </div>
+
+                        </div>
+
+                        <div class="mb-3">
+
+                            <label class="form-label">
+                                Descrição
+                            </label>
+
+                            <textarea class="form-control"
+                                      rows="4"
+                                      th:field="*{descricao}">
+                            </textarea>
+
+                            <div class="text-danger mt-1"
+                                 th:if="${#fields.hasErrors('descricao')}"
+                                 th:errors="*{descricao}">
+                            </div>
+
+                        </div>
+
+                        <div class="row">
+
+                            <div class="col-md-6 mb-3">
+
+                                <label class="form-label">
+                                    Duração (minutos)
+                                </label>
+
+                                <input type="number"
+                                       class="form-control"
+                                       th:field="*{duracao}">
+
+                                <div class="text-danger mt-1"
+                                     th:if="${#fields.hasErrors('duracao')}"
+                                     th:errors="*{duracao}">
+                                </div>
+
+                            </div>
+
+                            <div class="col-md-6 mb-4">
+
+                                <label class="form-label">
+                                    Usuário
+                                </label>
+
+                                <select class="form-select"
+                                        th:field="*{usuario.id}">
+
+                                    <option value="">
+                                        Selecione um usuário
+                                    </option>
+
+                                    <option th:each="usuario : ${usuarios}"
+                                            th:value="${usuario.id}"
+                                            th:text="${usuario.nome}">
+                                    </option>
+
+                                </select>
+
+                                <div class="text-danger mt-2"
+                                     th:if="${erroUsuario}"
+                                     th:text="${erroUsuario}">
+                                </div>
+
+                            </div>
+
+                        </div>
+
+                        <div class="d-flex gap-2">
+
+                            <button type="submit"
+                                    class="btn btn-success">
+                                💾 Salvar
+                            </button>
+
+                            <a href="/treinos"
+                               class="btn btn-secondary">
+                                ↩ Voltar
+                            </a>
+
+                        </div>
+
+                    </form>
+
+                </div>
+
             </div>
+
         </div>
 
-        <div class="mb-3">
-            <label>Duração (minutos)</label>
-
-            <input type="number"
-                   class="form-control"
-                   th:field="*{duracao}">
-
-            <div class="text-danger"
-                 th:if="${#fields.hasErrors('duracao')}"
-                 th:errors="*{duracao}">
-            </div>
-        </div>
-
-        <div class="mb-3">
-
-            <label>Usuário</label>
-
-            <select class="form-select"
-                    th:field="*{usuario.id}">
-
-                <option value="">
-                    Selecione um usuário
-                </option>
-
-                <option th:each="usuario : ${usuarios}"
-                        th:value="${usuario.id}"
-                        th:text="${usuario.nome}">
-                </option>
-
-            </select>
-
-            <div class="text-danger"
-                 th:if="${erroUsuario}"
-                 th:text="${erroUsuario}">
-            </div>
-
-        </div>
-
-        <button type="submit"
-                class="btn btn-success">
-            Salvar
-        </button>
-
-        <a href="/treinos"
-           class="btn btn-secondary">
-            Voltar
-        </a>
-
-    </form>
+    </div>
 
 </div>
 
+<div th:replace="fragments/footer :: footer"></div>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/js/bootstrap.bundle.min.js"></script>
+
 </body>
+
 </html>

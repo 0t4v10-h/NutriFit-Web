@@ -1,72 +1,109 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
+
 <head>
     <meta charset="UTF-8">
     <title>Agendamentos</title>
 
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/css/bootstrap.min.css"
           rel="stylesheet">
+
+    <link rel="stylesheet" th:href="@{/css/style.css}">
 </head>
+
 <body>
 
-<div class="container mt-4">
+<div th:replace="fragments/header :: header"></div>
 
-    <h2>Agendamentos Cadastrados</h2>
+<div class="container-fluid">
 
-    <a href="/agendamentos/novo"
-       class="btn btn-success mb-3">
-        Novo Agendamento
-    </a>
+    <div class="row">
 
-    <table class="table table-striped">
+        <div class="col-md-2 p-0">
+            <div th:replace="fragments/sidebar :: sidebar"></div>
+        </div>
 
-        <thead>
-        <tr>
-            <th>ID</th>
-            <th>Data</th>
-            <th>Horário</th>
-            <th>Status</th>
-            <th>Usuário</th>
-            <th>Ações</th>
-        </tr>
-        </thead>
+        <div class="col-md-10 main-content">
 
-        <tbody>
+            <div class="card card-custom shadow">
 
-        <tr th:each="agendamento : ${agendamentos}">
+                <div class="card-body">
 
-            <td th:text="${agendamento.id}"></td>
+                    <div class="d-flex justify-content-between align-items-center mb-4">
 
-            <td th:text="${agendamento.data}"></td>
+                        <h2 class="page-title mb-0">
+                            📅 Agendamentos Cadastrados
+                        </h2>
 
-            <td th:text="${agendamento.horario}"></td>
+                        <a href="/agendamentos/novo"
+                           class="btn btn-success shadow-sm">
+                            + Novo Agendamento
+                        </a>
 
-            <td th:text="${agendamento.status}"></td>
+                    </div>
 
-            <td th:text="${agendamento.usuario.nome}"></td>
+                    <table class="table table-hover table-bordered align-middle">
 
-            <td>
+                        <thead class="table-success">
+                        <tr>
+                            <th>ID</th>
+                            <th>Data</th>
+                            <th>Horário</th>
+                            <th>Status</th>
+                            <th>Usuário</th>
+                            <th width="200">Ações</th>
+                        </tr>
+                        </thead>
 
-                <a th:href="@{/agendamentos/editar/{id}(id=${agendamento.id})}"
-                   class="btn btn-warning btn-sm">
-                    Editar
-                </a>
+                        <tbody>
 
-                <a th:href="@{/agendamentos/excluir/{id}(id=${agendamento.id})}"
-                   class="btn btn-danger btn-sm"
-                   onclick="return confirm('Deseja excluir este agendamento?')">
-                    Excluir
-                </a>
+                        <tr th:each="agendamento : ${agendamentos}">
 
-            </td>
+                            <td th:text="${agendamento.id}"></td>
 
-        </tr>
+                            <td th:text="${agendamento.data}"></td>
 
-        </tbody>
+                            <td th:text="${agendamento.horario}"></td>
 
-    </table>
+                            <td th:text="${agendamento.status}"></td>
+
+                            <td th:text="${agendamento.usuario.nome}"></td>
+
+                            <td>
+
+                                <a th:href="@{/agendamentos/editar/{id}(id=${agendamento.id})}"
+                                   class="btn btn-warning btn-sm btn-action">
+                                    ✏️ Editar
+                                </a>
+
+                                <a th:href="@{/agendamentos/excluir/{id}(id=${agendamento.id})}"
+                                   class="btn btn-danger btn-sm btn-action"
+                                   onclick="return confirm('Deseja excluir este agendamento?')">
+                                    🗑 Excluir
+                                </a>
+
+                            </td>
+
+                        </tr>
+
+                        </tbody>
+
+                    </table>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
 
 </div>
 
+<div th:replace="fragments/footer :: footer"></div>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/js/bootstrap.bundle.min.js"></script>
+
 </body>
+
 </html>
