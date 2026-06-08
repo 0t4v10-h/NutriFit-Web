@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Cadastro de Refeição</title>
+
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/css/bootstrap.min.css"
+          rel="stylesheet">
+</head>
+<body>
+
+<div class="container mt-4">
+
+    <h2>Cadastrar Refeição</h2>
+
+    <form th:action="@{/refeicoes/salvar}"
+          th:object="${refeicao}"
+          method="post">
+
+        <input type="hidden" th:field="*{id}">
+
+        <div class="mb-3">
+            <label>Nome da Refeição</label>
+
+            <input type="text"
+                   class="form-control"
+                   th:field="*{nome}">
+
+            <div class="text-danger"
+                 th:if="${#fields.hasErrors('nome')}"
+                 th:errors="*{nome}">
+            </div>
+        </div>
+
+        <div class="mb-3">
+            <label>Calorias</label>
+
+            <input type="number"
+                   step="0.1"
+                   class="form-control"
+                   th:field="*{calorias}">
+
+            <div class="text-danger"
+                 th:if="${#fields.hasErrors('calorias')}"
+                 th:errors="*{calorias}">
+            </div>
+        </div>
+
+        <div class="mb-3">
+            <label>Tipo da Refeição</label>
+
+            <select class="form-select"
+                    th:field="*{tipo}">
+
+                <option value="">
+                    Selecione...
+                </option>
+
+                <option value="CAFE_DA_MANHA">
+                    Café da Manhã
+                </option>
+
+                <option value="ALMOCO">
+                    Almoço
+                </option>
+
+                <option value="JANTAR">
+                    Jantar
+                </option>
+
+                <option value="LANCHE">
+                    Lanche
+                </option>
+
+            </select>
+        </div>
+
+        <div class="mb-3">
+            <label>Data</label>
+
+            <input type="date"
+                   class="form-control"
+                   th:field="*{data}">
+        </div>
+
+        <div class="mb-3">
+            <label>Usuário</label>
+
+            <select class="form-select"
+                    th:field="*{usuario.id}">
+
+                <option value="">
+                    Selecione um usuário
+                </option>
+
+                <option th:each="usuario : ${usuarios}"
+                        th:value="${usuario.id}"
+                        th:text="${usuario.nome}">
+                </option>
+
+            </select>
+        </div>
+
+        <button type="submit"
+                class="btn btn-success">
+            Salvar
+        </button>
+
+        <a href="/refeicoes"
+           class="btn btn-secondary">
+            Voltar
+        </a>
+
+    </form>
+
+</div>
+
+</body>
+</html>
