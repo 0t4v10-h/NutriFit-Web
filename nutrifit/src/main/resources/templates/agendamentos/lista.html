@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Agendamentos</title>
+
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/css/bootstrap.min.css"
+          rel="stylesheet">
+</head>
+<body>
+
+<div class="container mt-4">
+
+    <h2>Agendamentos Cadastrados</h2>
+
+    <a href="/agendamentos/novo"
+       class="btn btn-success mb-3">
+        Novo Agendamento
+    </a>
+
+    <table class="table table-striped">
+
+        <thead>
+        <tr>
+            <th>ID</th>
+            <th>Data</th>
+            <th>Horário</th>
+            <th>Status</th>
+            <th>Usuário</th>
+            <th>Ações</th>
+        </tr>
+        </thead>
+
+        <tbody>
+
+        <tr th:each="agendamento : ${agendamentos}">
+
+            <td th:text="${agendamento.id}"></td>
+
+            <td th:text="${agendamento.data}"></td>
+
+            <td th:text="${agendamento.horario}"></td>
+
+            <td th:text="${agendamento.status}"></td>
+
+            <td th:text="${agendamento.usuario.nome}"></td>
+
+            <td>
+
+                <a th:href="@{/agendamentos/editar/{id}(id=${agendamento.id})}"
+                   class="btn btn-warning btn-sm">
+                    Editar
+                </a>
+
+                <a th:href="@{/agendamentos/excluir/{id}(id=${agendamento.id})}"
+                   class="btn btn-danger btn-sm"
+                   onclick="return confirm('Deseja excluir este agendamento?')">
+                    Excluir
+                </a>
+
+            </td>
+
+        </tr>
+
+        </tbody>
+
+    </table>
+
+</div>
+
+</body>
+</html>
