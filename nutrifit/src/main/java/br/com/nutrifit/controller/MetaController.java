@@ -66,7 +66,7 @@ public class MetaController {
 
             return "metas/form";
         }
-        
+
         meta.setUsuario(
                 usuarioService.buscarPorId(
                         meta.getUsuario().getId()
@@ -74,7 +74,26 @@ public class MetaController {
         );
 
         service.salvar(meta);
+        return "redirect:/metas";
+    }
 
+    @GetMapping("/editar/{id}")
+    public String editar(@PathVariable Long id,
+                         Model model) {
+
+        Meta meta = service.buscarPorId(id);
+
+        model.addAttribute("meta", meta);
+        model.addAttribute("usuarios",
+                usuarioService.listarTodos());
+
+        return "metas/form";
+    }
+
+    @GetMapping("/excluir/{id}")
+    public String excluir(@PathVariable Long id) {
+
+        service.excluir(id);
         return "redirect:/metas";
     }
 }
