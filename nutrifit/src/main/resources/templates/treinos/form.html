@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Cadastro de Treino</title>
+
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/css/bootstrap.min.css"
+          rel="stylesheet">
+</head>
+<body>
+
+<div class="container mt-4">
+
+    <h2>Cadastrar Treino</h2>
+
+    <form th:action="@{/treinos/salvar}"
+          th:object="${treino}"
+          method="post">
+
+        <input type="hidden" th:field="*{id}">
+
+        <div class="mb-3">
+            <label>Nome</label>
+
+            <input type="text"
+                   class="form-control"
+                   th:field="*{nome}">
+
+            <div class="text-danger"
+                 th:if="${#fields.hasErrors('nome')}"
+                 th:errors="*{nome}">
+            </div>
+        </div>
+
+        <div class="mb-3">
+            <label>Descrição</label>
+
+            <textarea class="form-control"
+                      rows="4"
+                      th:field="*{descricao}">
+            </textarea>
+
+            <div class="text-danger"
+                 th:if="${#fields.hasErrors('descricao')}"
+                 th:errors="*{descricao}">
+            </div>
+        </div>
+
+        <div class="mb-3">
+            <label>Duração (minutos)</label>
+
+            <input type="number"
+                   class="form-control"
+                   th:field="*{duracao}">
+
+            <div class="text-danger"
+                 th:if="${#fields.hasErrors('duracao')}"
+                 th:errors="*{duracao}">
+            </div>
+        </div>
+
+        <div class="mb-3">
+
+            <label>Usuário</label>
+
+            <select class="form-select"
+                    th:field="*{usuario.id}">
+
+                <option value="">
+                    Selecione um usuário
+                </option>
+
+                <option th:each="usuario : ${usuarios}"
+                        th:value="${usuario.id}"
+                        th:text="${usuario.nome}">
+                </option>
+
+            </select>
+
+            <div class="text-danger"
+                 th:if="${erroUsuario}"
+                 th:text="${erroUsuario}">
+            </div>
+
+        </div>
+
+        <button type="submit"
+                class="btn btn-success">
+            Salvar
+        </button>
+
+        <a href="/treinos"
+           class="btn btn-secondary">
+            Voltar
+        </a>
+
+    </form>
+
+</div>
+
+</body>
+</html>

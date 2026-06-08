@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Treinos</title>
+
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/css/bootstrap.min.css"
+          rel="stylesheet">
+</head>
+<body>
+
+<div class="container mt-4">
+
+    <h2>Treinos Cadastrados</h2>
+
+    <a href="/treinos/novo"
+       class="btn btn-success mb-3">
+        Novo Treino
+    </a>
+
+    <table class="table table-striped">
+
+        <thead>
+        <tr>
+            <th>ID</th>
+            <th>Nome</th>
+            <th>Descrição</th>
+            <th>Duração</th>
+            <th>Usuário</th>
+            <th>Ações</th>
+        </tr>
+        </thead>
+
+        <tbody>
+
+        <tr th:each="treino : ${treinos}">
+
+            <td th:text="${treino.id}"></td>
+
+            <td th:text="${treino.nome}"></td>
+
+            <td th:text="${treino.descricao}"></td>
+
+            <td th:text="${treino.duracao + ' min'}"></td>
+
+            <td th:text="${treino.usuario.nome}"></td>
+
+            <td>
+
+                <a th:href="@{/treinos/editar/{id}(id=${treino.id})}"
+                   class="btn btn-warning btn-sm">
+                    Editar
+                </a>
+
+                <a th:href="@{/treinos/excluir/{id}(id=${treino.id})}"
+                   class="btn btn-danger btn-sm"
+                   onclick="return confirm('Deseja excluir este treino?')">
+                    Excluir
+                </a>
+
+            </td>
+
+        </tr>
+
+        </tbody>
+
+    </table>
+
+</div>
+
+</body>
+</html>
