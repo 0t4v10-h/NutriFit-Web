@@ -6,6 +6,9 @@ import jakarta.validation.constraints.DecimalMin;
 import jakarta.validation.constraints.NotNull;
 import java.util.List;
 import java.util.ArrayList;
+import br.com.nutrifit.model.enums.PerfilUsuario;
+import jakarta.persistence.EnumType;
+import jakarta.persistence.Enumerated;
 import jakarta.persistence.OneToMany;
 import jakarta.persistence.OneToOne;
 import lombok.Getter;
@@ -16,6 +19,9 @@ import lombok.Setter;
 @Entity
 @Table(name = "usuarios")
 public class Usuario extends Pessoa {
+
+    @Enumerated(EnumType.STRING)
+    private PerfilUsuario perfil;
 
     @NotNull(message = "O peso é obrigatório")
     @DecimalMin(value = "1.0", message = "Peso inválido")
