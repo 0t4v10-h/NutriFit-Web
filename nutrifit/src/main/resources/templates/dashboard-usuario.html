@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Meu Dashboard</title>
+
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/css/bootstrap.min.css"
+          rel="stylesheet">
+
+    <link rel="stylesheet" th:href="@{/css/style.css}">
+</head>
+
+<body>
+
+<div th:replace="fragments/header :: header"></div>
+
+<div class="container-fluid">
+
+    <div class="row">
+
+        <div class="col-md-2 p-0">
+            <div th:replace="fragments/sidebar :: sidebar"></div>
+        </div>
+
+        <div class="col-md-10 main-content">
+
+            <h2 class="page-title mb-4">
+                👋 Bem-vindo ao NutriFit
+            </h2>
+
+            <div class="row">
+
+                <div class="col-md-6 mb-4">
+
+                    <div class="card dashboard-card shadow">
+
+                        <div class="card-body">
+
+                            <h4 class="mb-3">
+                                👤 Dados do Usuário
+                            </h4>
+
+                            <p>
+                                <strong>Nome:</strong>
+                                <span th:text="${usuario.nome}"></span>
+                            </p>
+
+                            <p>
+                                <strong>Email:</strong>
+                                <span th:text="${usuario.email}"></span>
+                            </p>
+
+                            <p>
+                                <strong>Objetivo:</strong>
+                                <span th:text="${usuario.objetivo}"></span>
+                            </p>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+                <div class="col-md-6 mb-4">
+
+                    <div class="card dashboard-card shadow">
+
+                        <div class="card-body">
+
+                            <h4 class="mb-3">
+                                📏 Dados Corporais
+                            </h4>
+
+                            <p>
+                                <strong>Peso:</strong>
+                                <span th:text="${usuario.peso}"></span> kg
+                            </p>
+
+                            <p>
+                                <strong>Altura:</strong>
+                                <span th:text="${usuario.altura}"></span> m
+                            </p>
+
+                            <p>
+                                <strong>Meta Calórica:</strong>
+                                <span th:text="${usuario.metaCalorica}"></span> kcal
+                            </p>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+            <div class="row">
+
+                <div class="col-md-12">
+
+                    <div class="card dashboard-card shadow">
+
+                        <div class="card-body text-center">
+
+                            <h4 class="mb-3">
+                                📊 Resumo Nutricional
+                            </h4>
+
+                            <p>
+                                Seu painel nutricional está ativo.
+                            </p>
+
+                            <p>
+                                Em breve serão exibidos:
+                            </p>
+
+                            <ul class="list-unstyled">
+                                <li>✅ IMC automático</li>
+                                <li>✅ Classificação do IMC</li>
+                                <li>✅ Minhas refeições</li>
+                                <li>✅ Meus treinos</li>
+                                <li>✅ Meus agendamentos</li>
+                                <li>✅ Minha meta nutricional</li>
+                            </ul>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
+
+<div th:replace="fragments/footer :: footer"></div>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/js/bootstrap.bundle.min.js"></script>
+
+</body>
+
+</html>

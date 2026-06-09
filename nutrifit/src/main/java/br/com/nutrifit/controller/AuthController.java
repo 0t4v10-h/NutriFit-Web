@@ -6,6 +6,7 @@ import jakarta.servlet.http.HttpSession;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
+import br.com.nutrifit.model.enums.PerfilUsuario;
 
 @Controller
 public class AuthController {
@@ -40,10 +41,12 @@ public class AuthController {
             return "login";
         }
 
-        session.setAttribute(
-                "usuarioLogado",
-                usuario);
+        session.setAttribute("usuarioLogado", usuario);
 
-        return "redirect:/";
+        if (usuario.getPerfil() == PerfilUsuario.ADMIN) {
+            return "redirect:/admin/dashboard";
+        }
+
+        return "redirect:/dashboard";
     }
 }
