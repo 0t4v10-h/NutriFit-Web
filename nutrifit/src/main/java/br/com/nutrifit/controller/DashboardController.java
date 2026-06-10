@@ -1,6 +1,7 @@
 package br.com.nutrifit.controller;
 
 import br.com.nutrifit.model.Usuario;
+import br.com.nutrifit.model.enums.PerfilUsuario;
 import br.com.nutrifit.service.IMCService;
 import jakarta.servlet.http.HttpSession;
 import org.springframework.stereotype.Controller;
@@ -28,8 +29,10 @@ public class DashboardController {
             return "redirect:/login";
         }
 
-        System.out.println("Peso: " + usuario.getPeso());
-        System.out.println("Altura: " + usuario.getAltura());
+        if (usuario.getPerfil() != PerfilUsuario.USUARIO) {
+            return "redirect:/admin/dashboard";
+        }
+
         double imc = imcService.calcularIMC(
                 usuario.getPeso(),
                 usuario.getAltura());
@@ -38,14 +41,8 @@ public class DashboardController {
                 imcService.classificarIMC(imc);
 
         model.addAttribute("usuario", usuario);
-
-        model.addAttribute(
-                "imc",
-                String.format("%.2f", imc));
-
-        model.addAttribute(
-                "classificacao",
-                classificacao);
+        model.addAttribute("imc", String.format("%.2f", imc));
+        model.addAttribute("classificacao", classificacao);
 
         return "dashboard-usuario";
     }
