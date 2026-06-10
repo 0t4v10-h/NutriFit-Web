@@ -101,3 +101,11 @@ transform: translateY(-3px);
 .main-content {
 padding: 30px;
 }
+
+.dashboard-card {
+    transition: transform 0.2s ease;
+}
+
+.dashboard-card:hover {
+    transform: translateY(-5px);
+}

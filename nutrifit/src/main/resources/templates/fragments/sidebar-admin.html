@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<body>
+
+<div th:fragment="sidebar">
+
+    <div class="sidebar">
+
+        <h4 class="sidebar-title">
+            Administração
+        </h4>
+
+        <ul class="nav flex-column">
+
+            <li class="nav-item">
+                <a class="nav-link" th:href="@{/admin/dashboard}">
+                    📊 Dashboard
+                </a>
+            </li>
+
+            <li class="nav-item">
+                <a class="nav-link" th:href="@{/usuarios}">
+                    👤 Usuários
+                </a>
+            </li>
+
+            <li class="nav-item">
+                <a class="nav-link" th:href="@{/metas}">
+                    🎯 Metas
+                </a>
+            </li>
+
+            <li class="nav-item">
+                <a class="nav-link" th:href="@{/refeicoes}">
+                    🍽 Refeições
+                </a>
+            </li>
+
+            <li class="nav-item">
+                <a class="nav-link" th:href="@{/treinos}">
+                    🏋 Treinos
+                </a>
+            </li>
+
+            <li class="nav-item">
+                <a class="nav-link" th:href="@{/agendamentos}">
+                    📅 Agendamentos
+                </a>
+            </li>
+
+            <li class="nav-item mt-4">
+                <a class="nav-link text-danger"
+                   th:href="@{/logout}">
+                    🚪 Sair
+                </a>
+            </li>
+
+        </ul>
+
+    </div>
+
+</div>
+
+</body>
+</html>

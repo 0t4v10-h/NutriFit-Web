@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Dashboard Administrativo</title>
+
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/css/bootstrap.min.css"
+          rel="stylesheet">
+
+    <link rel="stylesheet"
+          th:href="@{/css/style.css}">
+</head>
+<body class="bg-light">
+
+<div th:replace="fragments/header :: header"></div>
+
+<div class="container-fluid">
+
+    <div class="row">
+
+        <div class="col-md-2 p-0">
+            <div th:replace="fragments/sidebar-admin :: sidebar"></div>
+        </div>
+
+        <div class="col-md-10">
+
+            <div class="container py-4">
+
+                <h2 class="fw-bold text-success mb-4">
+                    📊 Dashboard Administrativo
+                </h2>
+
+                <div class="row g-4">
+
+                    <div class="col-md-4">
+                        <div class="card shadow border-0 dashboard-card">
+
+                            <div class="card-body text-center">
+
+                                <h5 class="card-title">
+                                    👤 Usuários
+                                </h5>
+
+                                <h2 class="fw-bold text-primary"
+                                    th:text="${totalUsuarios}">
+                                </h2>
+
+                                <p class="text-muted mb-0">
+                                    Usuários cadastrados
+                                </p>
+
+                            </div>
+
+                        </div>
+                    </div>
+
+                    <div class="col-md-4">
+                        <div class="card shadow border-0 dashboard-card">
+
+                            <div class="card-body text-center">
+
+                                <h5 class="card-title">
+                                    🎯 Metas
+                                </h5>
+
+                                <h2 class="fw-bold text-success"
+                                    th:text="${totalMetas}">
+                                </h2>
+
+                                <p class="text-muted mb-0">
+                                    Metas registradas
+                                </p>
+
+                            </div>
+
+                        </div>
+                    </div>
+
+                    <div class="col-md-4">
+                        <div class="card shadow border-0 dashboard-card">
+
+                            <div class="card-body text-center">
+
+                                <h5 class="card-title">
+                                    🍽 Refeições
+                                </h5>
+
+                                <h2 class="fw-bold text-warning"
+                                    th:text="${totalRefeicoes}">
+                                </h2>
+
+                                <p class="text-muted mb-0">
+                                    Refeições cadastradas
+                                </p>
+
+                            </div>
+
+                        </div>
+                    </div>
+
+                    <div class="col-md-6">
+                        <div class="card shadow border-0 dashboard-card">
+
+                            <div class="card-body text-center">
+
+                                <h5 class="card-title">
+                                    🏋 Treinos
+                                </h5>
+
+                                <h2 class="fw-bold text-danger"
+                                    th:text="${totalTreinos}">
+                                </h2>
+
+                                <p class="text-muted mb-0">
+                                    Treinos cadastrados
+                                </p>
+
+                            </div>
+
+                        </div>
+                    </div>
+
+                    <div class="col-md-6">
+                        <div class="card shadow border-0 dashboard-card">
+
+                            <div class="card-body text-center">
+
+                                <h5 class="card-title">
+                                    📅 Agendamentos
+                                </h5>
+
+                                <h2 class="fw-bold text-info"
+                                    th:text="${totalAgendamentos}">
+                                </h2>
+
+                                <p class="text-muted mb-0">
+                                    Agendamentos cadastrados
+                                </p>
+
+                            </div>
+
+                        </div>
+                    </div>
+
+                </div>
+
+                <div class="card shadow border-0 mt-4">
+
+                    <div class="card-body">
+
+                        <h4 class="fw-bold text-success">
+                            Bem-vindo ao painel administrativo
+                        </h4>
+
+                        <p class="mb-0">
+                            Utilize o menu lateral para gerenciar usuários,
+                            metas, refeições, treinos e agendamentos do sistema NutriFit.
+                        </p>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
+
+<div th:replace="fragments/footer :: footer"></div>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/js/bootstrap.bundle.min.js"></script>
+
+</body>
+</html>
