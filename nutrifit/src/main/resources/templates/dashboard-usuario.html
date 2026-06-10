@@ -95,6 +95,34 @@
 
             </div>
 
+            <div class="col-md-12 mb-4">
+
+                <div class="card dashboard-card shadow">
+
+                    <div class="card-body text-center">
+
+                        <h4 class="mb-3">
+                            📊 Índice de Massa Corporal (IMC)
+                        </h4>
+
+                        <h1 class="text-success fw-bold"
+                            th:text="${imc}">
+                        </h1>
+
+                        <h5 class="mt-3">
+                            Classificação:
+                        </h5>
+
+                        <span class="badge bg-success fs-6"
+                              th:text="${classificacao}">
+            </span>
+
+                    </div>
+
+                </div>
+
+            </div>
+
             <div class="row">
 
                 <div class="col-md-12">

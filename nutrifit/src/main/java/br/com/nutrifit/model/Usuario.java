@@ -2,6 +2,7 @@ package br.com.nutrifit.model;
 
 import br.com.nutrifit.model.enums.ObjetivoNutricional;
 import jakarta.persistence.*;
+import jakarta.validation.constraints.DecimalMax;
 import jakarta.validation.constraints.DecimalMin;
 import jakarta.validation.constraints.NotNull;
 import java.util.List;
@@ -29,6 +30,7 @@ public class Usuario extends Pessoa {
 
     @NotNull(message = "A altura é obrigatória")
     @DecimalMin(value = "0.50", message = "Altura inválida")
+    @DecimalMax(value = "2.50", message = "Altura inválida")
     private Double altura;
 
     @NotNull(message = "A meta calórica é obrigatória")
