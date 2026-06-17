@@ -70,6 +70,15 @@ public class UsuarioController {
             return validacao;
         }
 
+        if (usuario.getEmail() != null
+                && service.emailJaCadastrado(usuario.getEmail(), usuario.getId())) {
+
+            result.rejectValue(
+                    "email",
+                    "duplicado",
+                    "Este email já está cadastrado para outro usuário");
+        }
+
         if (result.hasErrors()) {
             return "usuarios/form";
         }

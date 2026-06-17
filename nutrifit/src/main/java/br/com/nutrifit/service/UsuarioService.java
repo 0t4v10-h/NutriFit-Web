@@ -27,6 +27,14 @@ public class UsuarioService {
         return repository.findById(id).orElse(null);
     }
 
+    public boolean emailJaCadastrado(String email, Long idAtual) {
+
+        return repository.findByEmail(email)
+                .map(Usuario::getId)
+                .filter(id -> !id.equals(idAtual))
+                .isPresent();
+    }
+
     public void excluir(Long id) {
         repository.deleteById(id);
     }
