@@ -48,6 +48,7 @@
 
                             <input type="text"
                                    class="form-control"
+                                   required
                                    th:field="*{nome}">
 
                             <div class="text-danger mt-1"
@@ -67,7 +68,9 @@
 
                                 <input type="number"
                                        step="0.1"
+                                       min="0.1"
                                        class="form-control"
+                                       required
                                        th:field="*{calorias}">
 
                                 <div class="text-danger mt-1"
@@ -84,6 +87,7 @@
                                 </label>
 
                                 <select class="form-select"
+                                        required
                                         th:field="*{tipo}">
 
                                     <option value="">
@@ -108,6 +112,11 @@
 
                                 </select>
 
+                                <div class="text-danger mt-1"
+                                     th:if="${#fields.hasErrors('tipo')}"
+                                     th:errors="*{tipo}">
+                                </div>
+
                             </div>
 
                         </div>
@@ -122,7 +131,13 @@
 
                                 <input type="date"
                                        class="form-control"
+                                       required
                                        th:field="*{data}">
+
+                                <div class="text-danger mt-1"
+                                     th:if="${#fields.hasErrors('data')}"
+                                     th:errors="*{data}">
+                                </div>
 
                             </div>
 
@@ -133,6 +148,7 @@
                                 </label>
 
                                 <select class="form-select"
+                                        required
                                         th:field="*{usuario.id}">
 
                                     <option value="">
@@ -145,6 +161,11 @@
                                     </option>
 
                                 </select>
+
+                                <div class="text-danger mt-2"
+                                     th:if="${erroUsuario}"
+                                     th:text="${erroUsuario}">
+                                </div>
 
                             </div>
 

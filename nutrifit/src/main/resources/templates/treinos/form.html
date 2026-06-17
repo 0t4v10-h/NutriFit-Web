@@ -47,6 +47,7 @@
 
                             <input type="text"
                                    class="form-control"
+                                   required
                                    th:field="*{nome}">
 
                             <div class="text-danger mt-1"
@@ -64,6 +65,7 @@
 
                             <textarea class="form-control"
                                       rows="4"
+                                      required
                                       th:field="*{descricao}">
                             </textarea>
 
@@ -83,7 +85,9 @@
                                 </label>
 
                                 <input type="number"
+                                       min="1"
                                        class="form-control"
+                                       required
                                        th:field="*{duracao}">
 
                                 <div class="text-danger mt-1"
@@ -100,6 +104,7 @@
                                 </label>
 
                                 <select class="form-select"
+                                        required
                                         th:field="*{usuario.id}">
 
                                     <option value="">

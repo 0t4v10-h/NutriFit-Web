@@ -50,7 +50,13 @@
 
                                 <input type="date"
                                        class="form-control"
+                                       required
                                        th:field="*{data}">
+
+                                <div class="text-danger mt-1"
+                                     th:if="${#fields.hasErrors('data')}"
+                                     th:errors="*{data}">
+                                </div>
 
                             </div>
 
@@ -62,7 +68,13 @@
 
                                 <input type="time"
                                        class="form-control"
+                                       required
                                        th:field="*{horario}">
+
+                                <div class="text-danger mt-1"
+                                     th:if="${#fields.hasErrors('horario')}"
+                                     th:errors="*{horario}">
+                                </div>
 
                             </div>
 
@@ -75,6 +87,7 @@
                             </label>
 
                             <select class="form-select"
+                                    required
                                     th:field="*{status}">
 
                                 <option value="">
@@ -95,6 +108,11 @@
 
                             </select>
 
+                            <div class="text-danger mt-1"
+                                 th:if="${#fields.hasErrors('status')}"
+                                 th:errors="*{status}">
+                            </div>
+
                         </div>
 
                         <div class="mb-4">
@@ -104,6 +122,7 @@
                             </label>
 
                             <select class="form-select"
+                                    required
                                     th:field="*{usuario.id}">
 
                                 <option value="">
