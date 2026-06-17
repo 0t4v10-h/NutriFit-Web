@@ -1,5 +1,6 @@
 package br.com.nutrifit.model;
 
+import jakarta.persistence.Column;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
@@ -23,6 +24,7 @@ public abstract class Pessoa {
 
     @Email(message = "Email inválido")
     @NotBlank(message = "O email é obrigatório")
+    @Column(unique = true)
     private String email;
 
     @NotBlank(message = "A senha é obrigatória")

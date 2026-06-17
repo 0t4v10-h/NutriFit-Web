@@ -21,6 +21,7 @@ import lombok.Setter;
 @Table(name = "usuarios")
 public class Usuario extends Pessoa {
 
+    @NotNull(message = "Selecione o perfil do usuário")
     @Enumerated(EnumType.STRING)
     private PerfilUsuario perfil;
 
@@ -37,6 +38,7 @@ public class Usuario extends Pessoa {
     @DecimalMin(value = "1.0", message = "Meta calórica inválida")
     private Double metaCalorica;
 
+    @NotNull(message = "Selecione o objetivo nutricional")
     @Enumerated(EnumType.STRING)
     private ObjetivoNutricional objetivo;
 
