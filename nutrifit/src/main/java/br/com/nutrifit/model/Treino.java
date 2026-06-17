@@ -3,6 +3,7 @@ package br.com.nutrifit.model;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
+import jakarta.validation.constraints.Positive;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -23,6 +24,7 @@ public class Treino {
     private String descricao;
 
     @NotNull(message = "A duração é obrigatória")
+    @Positive(message = "A duração deve ser maior que zero")
     private Integer duracao;
 
     @ManyToOne

@@ -3,6 +3,7 @@ package br.com.nutrifit.model;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
+import jakarta.validation.constraints.Positive;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -20,6 +21,7 @@ public class Meta {
     private String descricao;
 
     @NotNull(message = "O peso objetivo é obrigatório")
+    @Positive(message = "O peso objetivo deve ser maior que zero")
     private Double pesoObjetivo;
 
     @NotNull(message = "Selecione um usuário")
