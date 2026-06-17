@@ -88,6 +88,20 @@ public class RefeicaoController {
             return validacao;
         }
 
+        if (refeicao.getUsuario() == null
+                || refeicao.getUsuario().getId() == null) {
+
+            model.addAttribute(
+                    "usuarios",
+                    usuarioService.listarTodos());
+
+            model.addAttribute(
+                    "erroUsuario",
+                    "Selecione um usuário.");
+
+            return "refeicoes/form";
+        }
+
         if (result.hasErrors()) {
 
             model.addAttribute(
@@ -96,6 +110,10 @@ public class RefeicaoController {
 
             return "refeicoes/form";
         }
+
+        refeicao.setUsuario(
+                usuarioService.buscarPorId(
+                        refeicao.getUsuario().getId()));
 
         service.salvar(refeicao);
 
