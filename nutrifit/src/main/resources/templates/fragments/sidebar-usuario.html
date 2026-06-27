@@ -1,64 +1,66 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
+
 <body>
 
-<div th:fragment="sidebar">
+    <div th:fragment="sidebar">
 
-    <div class="sidebar">
+        <div class="sidebar">
 
-        <h4 class="sidebar-title">
-            Meu NutriFit
-        </h4>
+            <div class="text-center mb-4">
 
-        <ul class="nav flex-column">
+                <img th:src="@{/img/logo.png}" class="mb-2">
 
-            <li class="nav-item">
-                <a class="nav-link"
-                   th:href="@{/dashboard}">
-                    📊 Meu Dashboard
-                </a>
-            </li>
+                <h4 class="sidebar-title">
+                    Meu NutriFit
+                </h4>
 
-            <li class="nav-item">
-                <a class="nav-link"
-                   th:href="@{/minha-meta}">
-                    🎯 Minha Meta
-                </a>
-            </li>
+            </div>
 
-            <li class="nav-item">
-                <a class="nav-link"
-                   th:href="@{/minhas-refeicoes}">
-                    🍽 Minhas Refeições
-                </a>
-            </li>
+            <ul class="nav flex-column">
 
-            <li class="nav-item">
-                <a class="nav-link"
-                   th:href="@{/meus-treinos}">
-                    🏋 Meus Treinos
-                </a>
-            </li>
+                <li class="nav-item">
+                    <a class="nav-link" th:href="@{/dashboard}">
+                        📊 Meu Dashboard
+                    </a>
+                </li>
 
-            <li class="nav-item">
-                <a class="nav-link"
-                   th:href="@{/meus-agendamentos}">
-                    📅 Meus Agendamentos
-                </a>
-            </li>
+                <li class="nav-item">
+                    <a class="nav-link" th:href="@{/minha-meta}">
+                        🎯 Minha Meta
+                    </a>
+                </li>
 
-            <li class="nav-item mt-4">
-                <a class="nav-link text-danger"
-                   th:href="@{/logout}">
-                    🚪 Sair
-                </a>
-            </li>
+                <li class="nav-item">
+                    <a class="nav-link" th:href="@{/minhas-refeicoes}">
+                        🍽 Minhas Refeições
+                    </a>
+                </li>
 
-        </ul>
+                <li class="nav-item">
+                    <a class="nav-link" th:href="@{/meus-treinos}">
+                        🏋 Meus Treinos
+                    </a>
+                </li>
+
+                <li class="nav-item">
+                    <a class="nav-link" th:href="@{/meus-agendamentos}">
+                        📅 Meus Agendamentos
+                    </a>
+                </li>
+
+                <li class="nav-item mt-4">
+                    <a class="nav-link text-danger" th:href="@{/logout}">
+                        🚪 Sair
+                    </a>
+                </li>
+
+            </ul>
+
+        </div>
 
     </div>
 
-</div>
-
 </body>
+
 </html>

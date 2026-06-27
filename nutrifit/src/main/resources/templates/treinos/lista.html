@@ -5,90 +5,90 @@
     <meta charset="UTF-8">
     <title>Treinos</title>
 
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/css/bootstrap.min.css"
-          rel="stylesheet">
-
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
     <link rel="stylesheet" th:href="@{/css/style.css}">
 </head>
 
-<body>
+<body class="has-navbar">
 
-<div th:replace="fragments/header :: header"></div>
+    <div th:replace="fragments/header :: header"></div>
 
-<div class="container-fluid">
+    <div class="container-fluid">
 
-    <div class="row">
+        <div class="row">
 
-        <div class="col-md-2 p-0">
-            <div th:replace="fragments/sidebar-admin :: sidebar"></div>
-        </div>
+            <div class="col-md-2 p-0">
+                <div th:replace="fragments/sidebar-admin :: sidebar"></div>
+            </div>
 
-        <div class="col-md-10 main-content">
+            <div class="col-md-10 main-content">
 
-            <div class="card card-custom shadow">
+                <div class="card card-custom shadow">
 
-                <div class="card-body">
+                    <div class="card-body">
 
-                    <div class="d-flex justify-content-between align-items-center mb-4">
+                        <div class="d-flex justify-content-between align-items-center mb-4">
 
-                        <h2 class="page-title mb-0">
-                            🏋️ Treinos Cadastrados
-                        </h2>
+                            <h2 class="page-title mb-0">
+                                🏋️ Treinos Cadastrados
+                            </h2>
 
-                        <a href="/treinos/novo"
-                           class="btn btn-success shadow-sm">
-                            + Novo Treino
-                        </a>
+                            <a href="/treinos/novo" class="btn btn-success shadow-sm">
+                                + Novo Treino
+                            </a>
+
+                        </div>
+
+                        <table class="table table-hover table-bordered align-middle">
+
+                            <thead class="table-success">
+                                <tr>
+                                    <th>ID</th>
+                                    <th>Nome</th>
+                                    <th>Descrição</th>
+                                    <th>Duração</th>
+                                    <th>Usuário</th>
+                                    <th width="200">Ações</th>
+                                </tr>
+                            </thead>
+
+                            <tbody>
+
+                                <tr th:each="treino : ${treinos}">
+
+                                    <td th:text="${treino.id}"></td>
+
+                                    <td th:text="${treino.nome}"></td>
+
+                                    <td th:text="${treino.descricao}"></td>
+
+                                    <td th:text="${treino.duracao + ' min'}"></td>
+
+                                    <td th:text="${treino.usuario.nome}"></td>
+
+                                    <td>
+
+                                        <a th:href="@{/treinos/editar/{id}(id=${treino.id})}"
+                                            class="btn btn-warning btn-sm btn-action">
+                                            ✏️ Editar
+                                        </a>
+
+                                        <a th:href="@{/treinos/excluir/{id}(id=${treino.id})}"
+                                            class="btn btn-danger btn-sm btn-action"
+                                            onclick="return confirm('Deseja excluir este treino?')">
+                                            🗑 Excluir
+                                        </a>
+
+                                    </td>
+
+                                </tr>
+
+                            </tbody>
+
+                        </table>
 
                     </div>
-
-                    <table class="table table-hover table-bordered align-middle">
-
-                        <thead class="table-success">
-                        <tr>
-                            <th>ID</th>
-                            <th>Nome</th>
-                            <th>Descrição</th>
-                            <th>Duração</th>
-                            <th>Usuário</th>
-                            <th width="200">Ações</th>
-                        </tr>
-                        </thead>
-
-                        <tbody>
-
-                        <tr th:each="treino : ${treinos}">
-
-                            <td th:text="${treino.id}"></td>
-
-                            <td th:text="${treino.nome}"></td>
-
-                            <td th:text="${treino.descricao}"></td>
-
-                            <td th:text="${treino.duracao + ' min'}"></td>
-
-                            <td th:text="${treino.usuario.nome}"></td>
-
-                            <td>
-
-                                <a th:href="@{/treinos/editar/{id}(id=${treino.id})}"
-                                   class="btn btn-warning btn-sm btn-action">
-                                    ✏️ Editar
-                                </a>
-
-                                <a th:href="@{/treinos/excluir/{id}(id=${treino.id})}"
-                                   class="btn btn-danger btn-sm btn-action"
-                                   onclick="return confirm('Deseja excluir este treino?')">
-                                    🗑 Excluir
-                                </a>
-
-                            </td>
-
-                        </tr>
-
-                        </tbody>
-
-                    </table>
 
                 </div>
 
@@ -98,11 +98,9 @@
 
     </div>
 
-</div>
+    <div th:replace="fragments/footer :: footer"></div>
 
-<div th:replace="fragments/footer :: footer"></div>
-
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/js/bootstrap.bundle.min.js"></script>
 
 </body>
 

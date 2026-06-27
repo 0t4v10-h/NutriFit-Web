@@ -1,19 +1,43 @@
 <!DOCTYPE html>
-
 <html xmlns:th="http://www.thymeleaf.org">
+
 <body>
 
-<header th:fragment="header">
+    <header th:fragment="header">
 
-    <nav class="navbar navbar-expand-lg navbar-dark navbar-custom">
-        <div class="container-fluid">
-        <span class="navbar-brand app-logo">
-            🥗 NutriFit
-        </span>
-        </div>
-    </nav>
+        <nav class="navbar navbar-expand-lg navbar-dark bg-success shadow-sm">
 
-</header>
+            <div class="container-fluid">
+
+                <a class="navbar-brand d-flex align-items-center" th:href="@{/dashboard}">
+
+                    <img th:src="@{/img/logo.png}" alt="NutriFit" class="me-2">
+
+                    <strong>NutriFit</strong>
+
+                </a>
+
+                <div class="d-flex align-items-center text-white">
+
+                    <i class="bi bi-person-circle me-2"></i>
+
+                    <span class="me-3"
+                        th:text="${session.usuarioLogado != null ? session.usuarioLogado.nome : 'Usuário'}">
+                        Usuário
+                    </span>
+
+                    <a class="btn btn-outline-light btn-sm" th:href="@{/logout}">
+                        Sair
+                    </a>
+
+                </div>
+
+            </div>
+
+        </nav>
+
+    </header>
 
 </body>
+
 </html>

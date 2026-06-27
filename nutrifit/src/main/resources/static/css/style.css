@@ -1,111 +1,197 @@
+html,
 body {
-background-color: #f4f6f9;
-font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    height: 100%;
+    margin: 0;
+    padding: 0;
+    overflow-x: hidden;
 }
 
-/* HEADER */
+body {
+    background-color: #f4f6f9;
+    font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+}
+
+.navbar {
+    height: 70px;
+    padding: 0 25px;
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    z-index: 200;
+}
 
 .navbar-custom {
-background-color: #198754;
-box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
+    background-color: #198754;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
 }
 
-.app-logo {
-font-size: 1.5rem;
-font-weight: bold;
+.navbar-brand {
+    font-size: 1.8rem;
+    font-weight: bold;
 }
 
-/* SIDEBAR */
+.navbar-brand img {
+    width: 80px;
+    border-radius: 50%;
+    margin-right: 10px;
+}
+
+.has-navbar {
+    padding-top: 70px;
+}
+
 
 .sidebar {
-background-color: #212529;
-min-height: 100%;
-padding: 20px;
-box-shadow: 2px 0 8px rgba(0, 0, 0, 0.15);
+    position: fixed;
+    top: 70px;
+    left: 0;
+    bottom: 0;
+    width: 260px;
+    background: #212529;
+    color: white;
+    padding: 25px;
+    overflow-y: auto;
+    overflow-x: hidden;
+    box-shadow: 2px 0 8px rgba(0, 0, 0, 0.15);
+    z-index: 100;
+}
+
+.sidebar::-webkit-scrollbar {
+    width: 4px;
 }
 
 .sidebar-title {
-color: white;
-font-weight: bold;
-margin-bottom: 25px;
+    color: white;
+    font-weight: bold;
+    margin-top: 10px;
+    margin-bottom: 25px;
 }
 
 .sidebar .nav-item {
-margin-bottom: 8px;
+    margin-bottom: 8px;
 }
 
 .sidebar .nav-link {
-color: white;
-border-radius: 8px;
-transition: 0.2s;
+    color: white;
+    padding: 12px;
+    border-radius: 8px;
+    transition: all .2s ease;
 }
 
 .sidebar .nav-link:hover {
-background-color: #343a40;
-color: white;
+    background-color: #198754;
+    color: white;
 }
 
-/* TÍTULOS */
+.sidebar img {
+    width: 150px;
+}
+
+
+.main-content {
+    margin-left: 260px;
+    padding-top: 70px;
+    padding-left: 20px;
+    padding-right: 20px;
+    padding-bottom: 20px;
+    min-height: 100vh;
+    box-sizing: border-box;
+    overflow-x: hidden;
+    max-width: calc(100vw - 260px);
+}
+
 
 .page-title {
-color: #198754;
-font-weight: bold;
+    color: #198754;
+    font-weight: bold;
 }
 
-/* CARDS */
 
-.card-custom {
-border: none;
-border-radius: 12px;
+.card,
+.card-custom,
+.stat-card {
+    border: none;
+    border-radius: 15px;
 }
 
 .card-custom .card-body {
-padding: 25px;
-}
-
-/* TABELAS */
-
-.table th,
-.table td {
-vertical-align: middle;
-}
-
-/* BOTÕES */
-
-.btn-action {
-min-width: 85px;
-}
-
-/* FOOTER */
-
-.footer-custom {
-text-align: center;
-padding: 15px;
-color: #6c757d;
-background-color: #ffffff;
-border-top: 1px solid #dee2e6;
-}
-
-/* DASHBOARD */
-
-.stat-card {
-border: none;
-border-radius: 15px;
-transition: 0.2s;
-}
-
-.stat-card:hover {
-transform: translateY(-3px);
-}
-
-.main-content {
-padding: 30px;
+    padding: 25px;
 }
 
 .dashboard-card {
-    transition: transform 0.2s ease;
+    transition: transform .2s ease;
 }
 
-.dashboard-card:hover {
+.dashboard-card:hover,
+.stat-card:hover {
     transform: translateY(-5px);
+}
+
+
+.table th,
+.table td {
+    vertical-align: middle;
+}
+
+
+.btn-action {
+    min-width: 85px;
+}
+
+
+.login-logo {
+    width: 100px;
+}
+
+
+.footer-custom {
+    margin-left: 260px;
+    text-align: center;
+    padding: 5px;
+    color: #6c757d;
+    background: white;
+    border-top: 1px solid #dee2e6;
+}
+
+
+@media (max-width: 768px) {
+    .sidebar {
+        width: 200px;
+    }
+
+    .main-content {
+        margin-left: 200px;
+        max-width: calc(100vw - 200px);
+        padding-left: 15px;
+        padding-right: 15px;
+    }
+
+    .footer-custom {
+        margin-left: 200px;
+    }
+}
+
+
+@media (max-width: 576px) {
+    .sidebar {
+        width: 160px;
+        padding: 15px 10px;
+        font-size: 0.85rem;
+    }
+
+    .sidebar img {
+        width: 70px;
+    }
+
+    .main-content {
+        margin-left: 160px;
+        max-width: calc(100vw - 160px);
+        padding-left: 10px;
+        padding-right: 10px;
+    }
+
+    .footer-custom {
+        margin-left: 160px;
+    }
 }

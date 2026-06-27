@@ -1,98 +1,67 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
+
 <head>
-
     <meta charset="UTF-8">
-
     <title>Meus Agendamentos</title>
 
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/css/bootstrap.min.css"
-          rel="stylesheet">
-
-    <link rel="stylesheet"
-          th:href="@{/css/style.css}">
-
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" th:href="@{/css/style.css}">
 </head>
 
-<body class="bg-light">
+<body class="has-navbar">
 
-<div th:replace="fragments/header :: header"></div>
+    <div th:replace="fragments/header :: header"></div>
+    <div th:replace="fragments/sidebar-usuario :: sidebar"></div>
 
-<div class="container-fluid">
+    <div class="main-content">
 
-    <div class="row">
+        <div class="card shadow border-0">
 
-        <div class="col-md-2 p-0">
-            <div th:replace="fragments/sidebar-usuario :: sidebar"></div>
-        </div>
+            <div class="card-body">
 
-        <div class="col-md-10">
+                <h2 class="fw-bold text-success mb-4">
+                    📅 Meus Agendamentos
+                </h2>
 
-            <div class="container py-4">
+                <div th:if="${#lists.isEmpty(agendamentos)}" class="alert alert-warning">
+                    Você ainda não possui agendamentos cadastrados.
+                </div>
 
-                <div class="card shadow border-0">
+                <div class="table-responsive">
+                    <table th:if="${!#lists.isEmpty(agendamentos)}"
+                        class="table table-hover table-bordered align-middle">
 
-                    <div class="card-body">
-
-                        <h2 class="fw-bold text-success mb-4">
-                            📅 Meus Agendamentos
-                        </h2>
-
-                        <div th:if="${#lists.isEmpty(agendamentos)}"
-                             class="alert alert-warning">
-
-                            Você ainda não possui agendamentos cadastrados.
-
-                        </div>
-
-                        <table th:if="${!#lists.isEmpty(agendamentos)}"
-                               class="table table-hover table-bordered align-middle">
-
-                            <thead class="table-success">
-
+                        <thead class="table-success">
                             <tr>
                                 <th>Data</th>
                                 <th>Horário</th>
                                 <th>Status</th>
                             </tr>
+                        </thead>
 
-                            </thead>
-
-                            <tbody>
-
+                        <tbody>
                             <tr th:each="agendamento : ${agendamentos}">
 
                                 <td th:text="${agendamento.data}"></td>
-
                                 <td th:text="${agendamento.horario}"></td>
 
                                 <td>
-
-                                    <span class="badge bg-warning"
-                                          th:if="${agendamento.status.name() == 'PENDENTE'}">
+                                    <span class="badge bg-warning" th:if="${agendamento.status.name() == 'PENDENTE'}">
                                         Pendente
                                     </span>
-
-                                    <span class="badge bg-success"
-                                          th:if="${agendamento.status.name() == 'CONFIRMADO'}">
+                                    <span class="badge bg-success" th:if="${agendamento.status.name() == 'CONFIRMADO'}">
                                         Confirmado
                                     </span>
-
-                                    <span class="badge bg-danger"
-                                          th:if="${agendamento.status.name() == 'CANCELADO'}">
+                                    <span class="badge bg-danger" th:if="${agendamento.status.name() == 'CANCELADO'}">
                                         Cancelado
                                     </span>
-
                                 </td>
 
                             </tr>
+                        </tbody>
 
-                            </tbody>
-
-                        </table>
-
-                    </div>
-
+                    </table>
                 </div>
 
             </div>
@@ -101,11 +70,10 @@
 
     </div>
 
-</div>
+    <div th:replace="fragments/footer :: footer"></div>
 
-<div th:replace="fragments/footer :: footer"></div>
-
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/js/bootstrap.bundle.min.js"></script>
 
 </body>
+
 </html>

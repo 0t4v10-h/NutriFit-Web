@@ -5,159 +5,140 @@
     <meta charset="UTF-8">
     <title>Cadastro de Agendamento</title>
 
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/css/bootstrap.min.css"
-          rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/css/bootstrap.min.css" rel="stylesheet">
 
     <link rel="stylesheet" th:href="@{/css/style.css}">
 </head>
 
-<body>
+<body class="has-navbar">
 
-<div th:replace="fragments/header :: header"></div>
+    <div th:replace="fragments/header :: header"></div>
 
-<div class="container-fluid">
+    <div class="container-fluid">
 
-    <div class="row">
+        <div class="row">
 
-        <div class="col-md-2 p-0">
-            <div th:replace="fragments/sidebar-admin :: sidebar"></div>
-        </div>
+            <div class="col-md-2 p-0">
+                <div th:replace="fragments/sidebar-admin :: sidebar"></div>
+            </div>
 
 
-        <div class="col-md-10 main-content">
+            <div class="col-md-10 main-content">
 
-            <div class="card card-custom shadow">
+                <div class="card card-custom shadow">
 
-                <div class="card-body">
+                    <div class="card-body">
 
-                    <h2 class="page-title mb-4">
-                        📅 Cadastrar Agendamento
-                    </h2>
+                        <h2 class="page-title mb-4">
+                            📅 Cadastrar Agendamento
+                        </h2>
 
-                    <form th:action="@{/agendamentos/salvar}"
-                          th:object="${agendamento}"
-                          method="post">
+                        <form th:action="@{/agendamentos/salvar}" th:object="${agendamento}" method="post">
 
-                        <input type="hidden" th:field="*{id}">
+                            <input type="hidden" th:field="*{id}">
 
-                        <div class="row">
+                            <div class="row">
 
-                            <div class="col-md-6 mb-3">
+                                <div class="col-md-6 mb-3">
 
-                                <label class="form-label">
-                                    Data
-                                </label>
+                                    <label class="form-label">
+                                        Data
+                                    </label>
 
-                                <input type="date"
-                                       class="form-control"
-                                       required
-                                       th:field="*{data}">
+                                    <input type="date" class="form-control" required th:field="*{data}">
 
-                                <div class="text-danger mt-1"
-                                     th:if="${#fields.hasErrors('data')}"
-                                     th:errors="*{data}">
+                                    <div class="text-danger mt-1" th:if="${#fields.hasErrors('data')}"
+                                        th:errors="*{data}">
+                                    </div>
+
+                                </div>
+
+                                <div class="col-md-6 mb-3">
+
+                                    <label class="form-label">
+                                        Horário
+                                    </label>
+
+                                    <input type="time" class="form-control" required th:field="*{horario}">
+
+                                    <div class="text-danger mt-1" th:if="${#fields.hasErrors('horario')}"
+                                        th:errors="*{horario}">
+                                    </div>
+
                                 </div>
 
                             </div>
 
-                            <div class="col-md-6 mb-3">
+                            <div class="mb-3">
 
                                 <label class="form-label">
-                                    Horário
+                                    Status
                                 </label>
 
-                                <input type="time"
-                                       class="form-control"
-                                       required
-                                       th:field="*{horario}">
+                                <select class="form-select" required th:field="*{status}">
 
-                                <div class="text-danger mt-1"
-                                     th:if="${#fields.hasErrors('horario')}"
-                                     th:errors="*{horario}">
+                                    <option value="">
+                                        Selecione...
+                                    </option>
+
+                                    <option value="PENDENTE">
+                                        Pendente
+                                    </option>
+
+                                    <option value="CONFIRMADO">
+                                        Confirmado
+                                    </option>
+
+                                    <option value="CANCELADO">
+                                        Cancelado
+                                    </option>
+
+                                </select>
+
+                                <div class="text-danger mt-1" th:if="${#fields.hasErrors('status')}"
+                                    th:errors="*{status}">
                                 </div>
 
                             </div>
 
-                        </div>
+                            <div class="mb-4">
 
-                        <div class="mb-3">
+                                <label class="form-label">
+                                    Usuário
+                                </label>
 
-                            <label class="form-label">
-                                Status
-                            </label>
+                                <select class="form-select" required th:field="*{usuario.id}">
 
-                            <select class="form-select"
-                                    required
-                                    th:field="*{status}">
+                                    <option value="">
+                                        Selecione um usuário
+                                    </option>
 
-                                <option value="">
-                                    Selecione...
-                                </option>
-
-                                <option value="PENDENTE">
-                                    Pendente
-                                </option>
-
-                                <option value="CONFIRMADO">
-                                    Confirmado
-                                </option>
-
-                                <option value="CANCELADO">
-                                    Cancelado
-                                </option>
-
-                            </select>
-
-                            <div class="text-danger mt-1"
-                                 th:if="${#fields.hasErrors('status')}"
-                                 th:errors="*{status}">
-                            </div>
-
-                        </div>
-
-                        <div class="mb-4">
-
-                            <label class="form-label">
-                                Usuário
-                            </label>
-
-                            <select class="form-select"
-                                    required
-                                    th:field="*{usuario.id}">
-
-                                <option value="">
-                                    Selecione um usuário
-                                </option>
-
-                                <option th:each="usuario : ${usuarios}"
-                                        th:value="${usuario.id}"
+                                    <option th:each="usuario : ${usuarios}" th:value="${usuario.id}"
                                         th:text="${usuario.nome}">
-                                </option>
+                                    </option>
 
-                            </select>
+                                </select>
 
-                            <div class="text-danger mt-2"
-                                 th:if="${erroUsuario}"
-                                 th:text="${erroUsuario}">
+                                <div class="text-danger mt-2" th:if="${erroUsuario}" th:text="${erroUsuario}">
+                                </div>
+
                             </div>
 
-                        </div>
+                            <div class="d-flex gap-2">
 
-                        <div class="d-flex gap-2">
+                                <button type="submit" class="btn btn-success">
+                                    💾 Salvar
+                                </button>
 
-                            <button type="submit"
-                                    class="btn btn-success">
-                                💾 Salvar
-                            </button>
+                                <a href="/agendamentos" class="btn btn-secondary">
+                                    ↩ Voltar
+                                </a>
 
-                            <a href="/agendamentos"
-                               class="btn btn-secondary">
-                                ↩ Voltar
-                            </a>
+                            </div>
 
-                        </div>
+                        </form>
 
-                    </form>
+                    </div>
 
                 </div>
 
@@ -167,11 +148,9 @@
 
     </div>
 
-</div>
+    <div th:replace="fragments/footer :: footer"></div>
 
-<div th:replace="fragments/footer :: footer"></div>
-
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/js/bootstrap.bundle.min.js"></script>
 
 </body>
 

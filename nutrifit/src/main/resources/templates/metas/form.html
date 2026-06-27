@@ -5,122 +5,106 @@
     <meta charset="UTF-8">
     <title>Cadastro de Meta</title>
 
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/css/bootstrap.min.css"
-          rel="stylesheet">
-
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
     <link rel="stylesheet" th:href="@{/css/style.css}">
 </head>
 
-<body>
+<body class="has-navbar">
 
-<div th:replace="fragments/header :: header"></div>
+    <div th:replace="fragments/header :: header"></div>
 
-<div class="container-fluid">
+    <div class="container-fluid">
 
-    <div class="row">
+        <div class="row">
 
-        <div class="col-md-2 p-0">
-            <div th:replace="fragments/sidebar-admin :: sidebar"></div>
-        </div>
+            <div class="col-md-2 p-0">
+                <div th:replace="fragments/sidebar-admin :: sidebar"></div>
+            </div>
 
 
-        <div class="col-md-10 main-content">
+            <div class="col-md-10 main-content">
 
-            <div class="card card-custom shadow">
+                <div class="card card-custom shadow">
 
-                <div class="card-body">
+                    <div class="card-body">
 
-                    <h2 class="page-title mb-4">
-                        🎯 Cadastrar Meta
-                    </h2>
+                        <h2 class="page-title mb-4">
+                            🎯 Cadastrar Meta
+                        </h2>
 
-                    <form th:action="@{/metas/salvar}"
-                          th:object="${meta}"
-                          method="post">
+                        <form th:action="@{/metas/salvar}" th:object="${meta}" method="post">
 
-                        <input type="hidden" th:field="*{id}">
+                            <input type="hidden" th:field="*{id}">
 
-                        <div class="mb-3">
+                            <div class="mb-3">
 
-                            <label class="form-label">
-                                Descrição
-                            </label>
+                                <label class="form-label">
+                                    Descrição
+                                </label>
 
-                            <input type="text"
-                                   class="form-control"
-                                   required
-                                   th:field="*{descricao}">
+                                <input type="text" class="form-control" required th:field="*{descricao}">
 
-                            <div class="text-danger mt-1"
-                                 th:if="${#fields.hasErrors('descricao')}"
-                                 th:errors="*{descricao}">
+                                <div class="text-danger mt-1" th:if="${#fields.hasErrors('descricao')}"
+                                    th:errors="*{descricao}">
+                                </div>
+
                             </div>
 
-                        </div>
+                            <div class="mb-3">
 
-                        <div class="mb-3">
+                                <label class="form-label">
+                                    Peso Objetivo (kg)
+                                </label>
 
-                            <label class="form-label">
-                                Peso Objetivo (kg)
-                            </label>
+                                <input type="number" step="0.1" min="0.1" class="form-control" required
+                                    th:field="*{pesoObjetivo}">
 
-                            <input type="number"
-                                   step="0.1"
-                                   min="0.1"
-                                   class="form-control"
-                                   required
-                                   th:field="*{pesoObjetivo}">
+                                <div class="text-danger mt-1" th:if="${#fields.hasErrors('pesoObjetivo')}"
+                                    th:errors="*{pesoObjetivo}">
+                                </div>
 
-                            <div class="text-danger mt-1"
-                                 th:if="${#fields.hasErrors('pesoObjetivo')}"
-                                 th:errors="*{pesoObjetivo}">
                             </div>
 
-                        </div>
+                            <div class="mb-4">
 
-                        <div class="mb-4">
+                                <label class="form-label">
+                                    Usuário
+                                </label>
 
-                            <label class="form-label">
-                                Usuário
-                            </label>
+                                <select class="form-select" required th:field="*{usuario.id}">
 
-                            <select class="form-select"
-                                    required
-                                    th:field="*{usuario.id}">
+                                    <option value="">
+                                        Selecione um usuário
+                                    </option>
 
-                                <option value="">
-                                    Selecione um usuário
-                                </option>
-
-                                <option th:each="usuario : ${usuarios}"
-                                        th:value="${usuario.id}"
+                                    <option th:each="usuario : ${usuarios}" th:value="${usuario.id}"
                                         th:text="${usuario.nome}">
-                                </option>
+                                    </option>
 
-                            </select>
+                                </select>
 
-                            <div class="text-danger mt-1"
-                                 th:if="${#fields.hasErrors('usuario')}"
-                                 th:errors="*{usuario}">
+                                <div class="text-danger mt-1" th:if="${#fields.hasErrors('usuario')}"
+                                    th:errors="*{usuario}">
+                                </div>
+
                             </div>
 
-                        </div>
+                            <div class="d-flex gap-2">
 
-                        <div class="d-flex gap-2">
+                                <button type="submit" class="btn btn-success">
+                                    💾 Salvar
+                                </button>
 
-                            <button type="submit"
-                                    class="btn btn-success">
-                                💾 Salvar
-                            </button>
+                                <a href="/metas" class="btn btn-secondary">
+                                    ↩ Voltar
+                                </a>
 
-                            <a href="/metas"
-                               class="btn btn-secondary">
-                                ↩ Voltar
-                            </a>
+                            </div>
 
-                        </div>
+                        </form>
 
-                    </form>
+                    </div>
 
                 </div>
 
@@ -130,11 +114,9 @@
 
     </div>
 
-</div>
+    <div th:replace="fragments/footer :: footer"></div>
 
-<div th:replace="fragments/footer :: footer"></div>
-
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/js/bootstrap.bundle.min.js"></script>
 
 </body>
 

@@ -5,143 +5,121 @@
     <meta charset="UTF-8">
     <title>Cadastro de Treino</title>
 
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/css/bootstrap.min.css"
-          rel="stylesheet">
-
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
     <link rel="stylesheet" th:href="@{/css/style.css}">
 </head>
 
-<body>
+<body class="has-navbar">
 
-<div th:replace="fragments/header :: header"></div>
+    <div th:replace="fragments/header :: header"></div>
 
-<div class="container-fluid">
+    <div class="container-fluid">
 
-    <div class="row">
+        <div class="row">
 
-        <div class="col-md-2 p-0">
-            <div th:replace="fragments/sidebar-admin :: sidebar"></div>
-        </div>
+            <div class="col-md-2 p-0">
+                <div th:replace="fragments/sidebar-admin :: sidebar"></div>
+            </div>
 
-        <div class="col-md-10 main-content">
+            <div class="col-md-10 main-content">
 
-            <div class="card card-custom shadow">
+                <div class="card card-custom shadow">
 
-                <div class="card-body">
+                    <div class="card-body">
 
-                    <h2 class="page-title mb-4">
-                        🏋️ Cadastrar Treino
-                    </h2>
+                        <h2 class="page-title mb-4">
+                            🏋️ Cadastrar Treino
+                        </h2>
 
-                    <form th:action="@{/treinos/salvar}"
-                          th:object="${treino}"
-                          method="post">
+                        <form th:action="@{/treinos/salvar}" th:object="${treino}" method="post">
 
-                        <input type="hidden" th:field="*{id}">
+                            <input type="hidden" th:field="*{id}">
 
-                        <div class="mb-3">
+                            <div class="mb-3">
 
-                            <label class="form-label">
-                                Nome
-                            </label>
+                                <label class="form-label">
+                                    Nome
+                                </label>
 
-                            <input type="text"
-                                   class="form-control"
-                                   required
-                                   th:field="*{nome}">
+                                <input type="text" class="form-control" required th:field="*{nome}">
 
-                            <div class="text-danger mt-1"
-                                 th:if="${#fields.hasErrors('nome')}"
-                                 th:errors="*{nome}">
+                                <div class="text-danger mt-1" th:if="${#fields.hasErrors('nome')}" th:errors="*{nome}">
+                                </div>
+
                             </div>
 
-                        </div>
+                            <div class="mb-3">
 
-                        <div class="mb-3">
+                                <label class="form-label">
+                                    Descrição
+                                </label>
 
-                            <label class="form-label">
-                                Descrição
-                            </label>
-
-                            <textarea class="form-control"
-                                      rows="4"
-                                      required
-                                      th:field="*{descricao}">
+                                <textarea class="form-control" rows="4" required th:field="*{descricao}">
                             </textarea>
 
-                            <div class="text-danger mt-1"
-                                 th:if="${#fields.hasErrors('descricao')}"
-                                 th:errors="*{descricao}">
-                            </div>
-
-                        </div>
-
-                        <div class="row">
-
-                            <div class="col-md-6 mb-3">
-
-                                <label class="form-label">
-                                    Duração (minutos)
-                                </label>
-
-                                <input type="number"
-                                       min="1"
-                                       class="form-control"
-                                       required
-                                       th:field="*{duracao}">
-
-                                <div class="text-danger mt-1"
-                                     th:if="${#fields.hasErrors('duracao')}"
-                                     th:errors="*{duracao}">
+                                <div class="text-danger mt-1" th:if="${#fields.hasErrors('descricao')}"
+                                    th:errors="*{descricao}">
                                 </div>
 
                             </div>
 
-                            <div class="col-md-6 mb-4">
+                            <div class="row">
 
-                                <label class="form-label">
-                                    Usuário
-                                </label>
+                                <div class="col-md-6 mb-3">
 
-                                <select class="form-select"
-                                        required
-                                        th:field="*{usuario.id}">
+                                    <label class="form-label">
+                                        Duração (minutos)
+                                    </label>
 
-                                    <option value="">
-                                        Selecione um usuário
-                                    </option>
+                                    <input type="number" min="1" class="form-control" required th:field="*{duracao}">
 
-                                    <option th:each="usuario : ${usuarios}"
-                                            th:value="${usuario.id}"
+                                    <div class="text-danger mt-1" th:if="${#fields.hasErrors('duracao')}"
+                                        th:errors="*{duracao}">
+                                    </div>
+
+                                </div>
+
+                                <div class="col-md-6 mb-4">
+
+                                    <label class="form-label">
+                                        Usuário
+                                    </label>
+
+                                    <select class="form-select" required th:field="*{usuario.id}">
+
+                                        <option value="">
+                                            Selecione um usuário
+                                        </option>
+
+                                        <option th:each="usuario : ${usuarios}" th:value="${usuario.id}"
                                             th:text="${usuario.nome}">
-                                    </option>
+                                        </option>
 
-                                </select>
+                                    </select>
 
-                                <div class="text-danger mt-2"
-                                     th:if="${erroUsuario}"
-                                     th:text="${erroUsuario}">
+                                    <div class="text-danger mt-2" th:if="${erroUsuario}" th:text="${erroUsuario}">
+                                    </div>
+
                                 </div>
 
                             </div>
 
-                        </div>
+                            <div class="d-flex gap-2">
 
-                        <div class="d-flex gap-2">
+                                <button type="submit" class="btn btn-success">
+                                    💾 Salvar
+                                </button>
 
-                            <button type="submit"
-                                    class="btn btn-success">
-                                💾 Salvar
-                            </button>
+                                <a href="/treinos" class="btn btn-secondary">
+                                    ↩ Voltar
+                                </a>
 
-                            <a href="/treinos"
-                               class="btn btn-secondary">
-                                ↩ Voltar
-                            </a>
+                            </div>
 
-                        </div>
+                        </form>
 
-                    </form>
+                    </div>
 
                 </div>
 
@@ -151,11 +129,9 @@
 
     </div>
 
-</div>
+    <div th:replace="fragments/footer :: footer"></div>
 
-<div th:replace="fragments/footer :: footer"></div>
-
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/js/bootstrap.bundle.min.js"></script>
 
 </body>
 
